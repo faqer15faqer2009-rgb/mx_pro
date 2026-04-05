@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر مكس برو| خدمات تقنية آمنة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #9d50bb;
+            --dark-bg: #0f172a;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        /* حماية: منع تحديد النصوص */
+        body {
+            user-select: none; 
+            -webkit-user-select: none; 
+            -moz-user-select: none; 
+            -ms-user-select: none;
+            margin: 0; padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* خلفية ملونة متحركة احترافية */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #3b0764, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--primary) 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+            opacity: 0.1;
+        }
+
+        .content { z-index: 1; padding: 20px; }
+
+        .btn-main {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white; padding: 15px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: bold; display: inline-block; 
+            margin-top: 20px; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+        }
+
+        .btn-main:hover { transform: scale(1.05); }
+
+        .container { max-width: 1200px; margin: -100px auto 50px; position: relative; z-index: 2; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+        .card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 40px 20px;
+            border-radius: 20px; text-align: center; cursor: pointer; transition: 0.4s;
+        }
+
+        .card:hover { 
+            transform: translateY(-10px); 
+            border-color: var(--primary);
+        }
+
+        /* شارة الحماية في الأسفل */
+        .security-badge {
+            position: fixed; bottom: 20px; left: 20px;
+            background: rgba(37, 211, 102, 0.1); border: 1px solid #25d366;
+            padding: 10px 15px; border-radius: 10px; font-size: 0.8rem;
+            display: flex; align-items: center; gap: 8px; z-index: 1000;
+        }
+
+        /* النافذة المنبثقة */
+        .modal {
+            display: none; position: fixed; z-index: 9999; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background-color: #1e293b; margin: 10% auto; padding: 40px;
+            border-radius: 25px; width: 85%; max-width: 600px; position: relative;
+            text-align: right; border: 1px solid var(--primary);
+        }
+
+        .close { position: absolute; left: 20px; top: 15px; font-size: 30px; cursor: pointer; color: #ff4b2b; }
+        .modal-btn {
+            display: block; background: #25d366; color: white; text-align: center;
+            padding: 15px; border-radius: 12px; text-decoration: none; margin-top: 30px; font-weight: bold;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <div class="security-badge">
+        <span style="color: #25d366;">🛡️</span>
+        بيئة برمجية آمنة SSL
+    </div>
+
+    <section class="hero">
+        <div class="content">
+            <h1 style="font-size: 3rem; margin-bottom: 10px;">حلول برمجية احترافية</h1>
+            <p style="font-size: 1.2rem; opacity: 0.8;">  الخبره في تطوير و تصنيع المواقع   </p>
+            <a href="#services" class="btn-main">اكتشف خدماتنا</a>
+        </div>
+    </section>
+
+    <div class="container" id="services">
+        <div class="grid">
+            <div class="card" onclick="openModal('web')">
+                <div style="font-size: 50px; margin-bottom: 15px;">🌐</div>
+                <h3>تطوير المواقع</h3>
+                <p>تصميم متجاوب وأداء فائق</p>
+            </div>
+            <div class="card" onclick="openModal('app')">
+                <div style="font-size: 50px; margin-bottom: 15px;">📱</div>
+                <h3>تطبيقات الهاتف</h3>
+                <p>حلول ذكية لـ iOS وأندرويد</p>
+            </div>
+            <div class="card" onclick="openModal('ai')">
+                <div style="font-size: 50px; margin-bottom: 15px;">🤖</div>
+                <h3>الذكاء الاصطناعي</h3>
+                <p>أتمتة ذكية لمشاريعك</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" style="color: var(--primary);"></h2>
+            <div id="modalDescription" style="line-height: 2; margin-top: 15px;"></div>
+            <a id="whatsappLink" href="#" class="modal-btn" target="_blank" rel="noopener noreferrer">اطلب الخدمة الآن عبر واتساب 💬</a>
+        </div>
+    </div>
+
+    <script>
+        // حماية: منع اختصارات لوحة المفاتيح
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 73)) {
+                return false;
+            }
+        };
+
+        const services = {
+            web: {
+                title: "🔐 برمجة المواقع المتطورة",
+                desc: "نصمم لك موقعاً سريعاً وآمناً. نركز على تجربة المستخدم وحماية البيانات باستخدام أحدث معايير التشفير.",
+                link: "https://wa.me/9647748772201?text=مرحباً، أريد الاستفسار عن خدمة تطوير المواقع"
+            },
+            app: {
+                title: "📲 تطبيقات الهواتف الذكية",
+                desc: "برمجة تطبيقات احترافية تضمن لك الوصول لجمهورك على جميع المنصات بأمان واستقرار تام.",
+                link: "https://wa.me/9647748772201?text=مرحباً، أريد الاستفسار عن خدمة برمجة التطبيقات"
+            },
+            ai: {
+                title: "🤖 أنظمة الذكاء الاصطناعي",
+                desc: "أتمتة ذكية لمشروعك تساهم في نموه السريع وتقليل التكاليف التشغيلية باستخدام تقنيات AI.",
+                link: "https://wa.me/9647748772201?text=مرحباً، أريد الاستفسار عن حلول الذكاء الاصطناعي"
+            }
+        };
+
+        function openModal(type) {
+            document.getElementById('modalTitle').innerText = services[type].title;
+            document.getElementById('modalDescription').innerText = services[type].desc;
+            document.getElementById('whatsappLink').href = services[type].link;
+            document.getElementById('myModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('myModal')) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
